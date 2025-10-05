@@ -1,0 +1,28 @@
+---
+config:
+  layout: elk
+  theme: default
+---
+flowchart TD
+    START@{ label: "Usuario: 'Cuál es el área de la puerta\\nubicada en la página 12, sección 1?'" } --> NODE1["**NODO 1: Query Processor**\n*El Normalizador*\n\n**Entrada:** Consulta en lenguaje natural\n**Proceso:** Limpieza y estructuración\n**Salida:** Datos estructurados con entidades clave"]
+    NODE1 --> NODE2["**NODO 2: Query Analysis**\n*El Analizador Semántico*\n\n**Entrada:** Datos estructurados básicos\n**Proceso:** Análisis de requerimientos técnicos\n**Salida:** Especificaciones detalladas de búsqueda"]
+    NODE2 --> NODE3{"**NODO 3: Decision Node**\n*El Planificador Estratégico*\n\n**Entrada:** Requerimientos técnicos\n**Proceso:** Selección de estrategia óptima\n**Salida:** Plan de ejecución detallado"}
+    NODE3 -- Visual Only --> EXEC1["**Estrategia Visual**\nBúsqueda por embeddings CLIP\nIdentificación de elementos arquitectónicos"]
+    NODE3 -- Text Only --> EXEC2["**Estrategia Textual**\nBúsqueda en datos OCR\nPatrones de texto específicos"]
+    NODE3 -- Híbrida --> EXEC3["**Estrategia Híbrida**\nCombinación coordinada\nVisual + Textual + Espacial"]
+    EXEC1 --> NODE4["**NODO 4: Query Execution**\n*El Ejecutor Especializado*\n\n**Entrada:** Plan de ejecución específico\n**Proceso:** Coordinación de búsquedas MongoDB\n**Salida:** Resultados estructurados con métricas"]
+    EXEC2 --> NODE4
+    EXEC3 --> NODE4
+    NODE4 --> NODE5["**NODO 5: Results Ranking**\n*El Evaluador de Calidad*\n\n**Entrada:** Múltiples resultados candidatos\n**Proceso:** Evaluación y ranking por confianza\n**Salida:** Resultados priorizados con justificación"]
+    NODE5 --> NODE6["**NODO 6: Response Generation**\n*El Comunicador Experto*\n\n**Entrada:** Mejor resultado con evaluación\n**Proceso:** Síntesis en lenguaje natural\n**Salida:** Respuesta final estructurada"]
+    NODE6 --> END@{ label: "**Respuesta al Usuario:**\\n'El área de la puerta ubicada en la página 12,\\nsección 1 es de 2.1 metros cuadrados.'" }
+    NODE4 -. Consultas vectoriales .-> A@{ label: "“`**MongoDB Atlas**\\n\\n**Colecciones:**\\n• ImageEmbeddings\\n• Segmentos procesados\\n• Metadatos espaciales\\n• Datos de OCR`”" }
+    NODE4 -. Búsquedas de texto .-> A
+    NODE4 -. Filtros espaciales .-> A
+    A -. Resultados .-> NODE4
+    CONFIG["**Sistema de Configuración**\n\n**Información disponible:**\n• Capacidades MongoDB actuales\n• Estadísticas de rendimiento\n• Patrones de éxito históricos"] -. Información del sistema .-> NODE3
+    NODE6 -. Métricas de éxito .-> CONFIG
+    START@{ shape: stadium}
+    END@{ shape: stadium}
+    MONGO@{ shape: cylinder}
+    A@{ shape: cyl, label: "Resources" }

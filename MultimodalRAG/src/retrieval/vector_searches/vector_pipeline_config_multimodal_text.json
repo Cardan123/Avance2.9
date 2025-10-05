@@ -1,0 +1,48 @@
+[
+  {
+        "$vectorSearch": {
+            "exact": true,
+            "index": "vector_search_index",
+            "limit": 50,
+            "path": "embedding_text",
+            "queryVector": ${queryVector}
+        }
+    },
+    {
+        "$project": {
+            "_id": 0,
+            "project_id": 1,
+            "doc_type": 1,
+            "source_file": 1,
+            "text": 1,
+            "score": { "$meta": "vectorSearchScore" }
+        }
+    },
+    {
+        "$match": {
+            "score": { "$gt": 0.8 }
+        }
+    },
+    {
+        "$setWindowFields": {  
+            "partitionBy": "$doc_type",
+            "sortBy": { "score": -1 },
+            "output": {
+                "rank": { "$rank": {} }
+            }
+        }
+    },
+    {
+        "$match": {
+            "rank": { "$lte": 10 }  
+        }
+    },
+    {
+        "$project": {  
+            "doc_type": 1,
+            "source_file": 1,
+            "text": 1,
+            "score": 1
+        }
+    }
+]

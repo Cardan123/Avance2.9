@@ -1,0 +1,56 @@
+#==========================================================
+vector_pipeline_path: C:/Git/MultimodalRAG/src/retrieval/vector_pipeline_config.json
+# To be used in retrieval pipeline
+tokenizer_path: C:/Git/MultimodalRAG/data/tokenizer
+#==========================================================
+# Keywords to be used for grouping the results
+# during vector search aggregation stage
+#vector_search_index_name: vector_search_index
+#vector_search_index_top_k: 2
+#vector_search_exact: True
+#vector_search_embedding_path: embedding
+#vector_search_metric: cosine
+vector_search_apply_pca: False
+vector_search_dimension: 1024
+vector_search_add_vector: False
+vector_search_index_main_keyword: text
+vector_search_index_main_image_keyword: text
+vector_search_file_path: C:/Git/MultimodalRAG/src/retrieval/vector_searches/vector_pipeline_config_multimodal.json
+vector_search_index_file_path: C:/Git/MultimodalRAG/src/retrieval/vector_searches/vector_search_index_multimodal.json
+#==========================================================
+# Google Gemini configuration
+# Using Gemini 2.0 which supports vision (multimodal)
+google_gemini_model_name: gemini-2.0-flash-exp
+google_gemini_temperature: 0.2
+google_gemini_max_output_tokens: 2048
+google_gemini_convert_system_message_to_human: True
+#==========================================================
+# Prompt template configuration
+prompt_template_path: C:/Git/MultimodalRAG/src/retrieval/prompt_templates/prompt_template.json
+# Prompt template for image description (multimodal)
+image_description_prompt_template_path: C:/Git/MultimodalRAG/src/retrieval/prompt_templates/image_description_prompt.json
+#==========================================================
+checker_enabled: True
+# Prompt template for checker (image answer detection)
+checker_prompt_template_path: C:/Git/MultimodalRAG/src/retrieval/prompt_templates/checker_prompt_template.json
+#==========================================================
+# Logging configuration
+log_retrieval: True
+log_vector_query_value: False
+#==========================================================
+# Base image paths configuration
+base_images_path: C:/Git/MultimodalRAG/data
+
+#==========================================================
+# Verbalization configuration
+image_verbalization_use: True
+
+#==========================================================
+# Reranking configuration (Cohere)
+# Enable to insert an optional reranking node after splitting results.
+# The API key can be provided via environment variable COHERE_API_KEY
+# or here as cohere_api_key (not recommended to commit secrets).
+reranking_enabled: False
+reranking_model: rerank-multilingual-v3.0  # or rerank-multilingual-v3.0 if needed
+reranking_top_n: 10             # how many top results to prioritize
+#==========================================================

@@ -1,0 +1,12 @@
+RETRIEVE = "retrieve"
+SPLITTER = "splitter"
+GENERATE = "generate"
+IMAGE_CHECKER = "image_checker"
+IMAGE_PROCESSING = "image_processing"
+IMAGE_VERBALIZATION = "image_verbalization"
+CONTEXTING = "context"
+END = "end"
+IMAGE_CONTEXT = "image_context"
+MARKDOWN_CONTEXT = "markdown_context"
+RERANKING = "reranking"
+

@@ -1,0 +1,54 @@
+ [   
+    {
+        "$vectorSearch": {
+            "exact": true,
+            "index": "vector_search_index",
+            "candidates": 200,
+            "limit": 50,
+            "path": "embedding_text",
+            "queryVector": ${queryVector},
+            "filter": { "doc_type": "markdown" }
+        }
+    },
+    {
+        "$project": {
+            "_id": 0,
+            "doc_type": 1,
+            "source_file": 1,
+            "text": 1,
+            "score": { "$meta": "vectorSearchScore" }
+        }
+    },
+    { "$sort": { "score": -1 } },
+    { "$limit": 10 }, 
+    
+    {
+        "$unionWith": {
+            "coll": "multimodal-rag", 
+            "pipeline": [
+                {
+                    "$vectorSearch": {
+                        "exact": true,
+                        "index": "vector_search_index",
+                        "candidates": 200,
+                        "limit": 50,
+                        "path": "embedding_text",
+                        "queryVector": ${queryVector},
+                        "filter": { "doc_type": "image" }
+                    }
+                },
+                {
+                    "$project": {
+                        "_id": 0,
+                        "doc_type": 1,
+                        "source_file": 1,
+                        "text": 1,
+                        "score": { "$meta": "vectorSearchScore" }
+                    }
+                },
+                { "$sort": { "score": -1 } },
+                { "$limit": 40 } 
+            ]
+        }
+    }
+]

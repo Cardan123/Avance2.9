@@ -1,0 +1,15 @@
+#==========================================================
+# General configuration for image ingestion pipeline
+image_folder: C:/Git/MultimodalRAG/data/images
+#==========================================================
+# We can add more configuration options as needed
+segmented_images_dataset: C:/Git/MultimodalRAG/data/images/segments/segmented_images_dataset.json
+#==========================================================
+# Added configuration for SAM mode
+sam_mode: auto  # Can be 'manual' or 'auto'
+#==========================================================
+# Enable the vector DB recreation and data re-ingestion
+RECREATE_VECTOR_DB: True  # Can be True or False
+#==========================================================
+# Path to the Tesseract OCR executable
+tesseract_path: "C:\\Users\\edwin\\AppData\\Local\\Programs\\Tesseract-OCR\\tesseract.exe"

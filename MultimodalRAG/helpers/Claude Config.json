@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "DemoMCPServer": {
+      "command": "C:\\Git\\MCP-Trainning\\venv\\Scripts\\python.exe",
+      "args": [
+        "C:\\Git\\MCP-Trainning\\01_DemoMCPServer\\server_demo1.py"
+      ]
+    },
+    "IngestPipelineMCPServer": {
+      "transport": "http",
+      "host": "127.0.0.1",
+      "port": 8000,
+      "command": "C:\\Git\\MultimodalRAG\\venv\\Scripts\\python.exe",
+      "args": [
+        "C:\\Git\\MultimodalRAG\\src\\ingest_pipeline_mcp_server.py"
+      ]
+    }
+  }
+}

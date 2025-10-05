@@ -1,0 +1,26 @@
+La búsqueda vectorial no solo se fija en las palabras clave, sino que entiende el significado detrás de lo que buscan. Para lograr esto, usamos un sistema de coordenadas especiales. A continuación, les explico los parámetros clave que definen cómo funciona esta "brújula" semántica.
+
+Los Parámetros Clave
+vector_search_index_name: vector_search_index
+Esto es simplemente el nombre del índice. Piensen en él como el título de un gran catálogo que contiene todos nuestros datos. Para que la búsqueda sea rápida, necesitamos un catálogo bien organizado.
+
+vector_search_index_main_keyword: chunk_text
+Este es el campo de texto principal. Imaginen que el catálogo está lleno de resúmenes de libros. Este parámetro le dice al sistema: "Aquí es donde está el texto que quiero que entiendas y transformes en un vector".
+
+vector_search_index_top_k: 2
+Esto define cuántos resultados queremos ver. top_k es como pedirle a nuestro bibliotecario que nos muestre los dos libros más relevantes que encontró. Es un control simple para limitar la cantidad de información que recibimos.
+
+vector_search_exact: True
+Con esta configuración, le estamos diciendo a nuestro sistema que haga una búsqueda exacta. En lugar de dar una respuesta rápida y "aproximada", el sistema se toma su tiempo para asegurarse de encontrar los vecinos más cercanos, lo que nos da mayor precisión. Es como si el bibliotecario recorriera cada pasillo para estar 100% seguro de que encontró los mejores libros.
+
+vector_search_embedding_path: embedding
+Aquí le decimos al sistema dónde están los vectores. El embedding es la representación numérica del texto. Es como si cada resumen de libro fuera un punto en nuestro mapa, y este parámetro nos indica dónde se guarda la información de cada punto.
+
+vector_search_dimension: 768
+Este es un detalle técnico, pero muy importante. Define la dimensionalidad de nuestros vectores. Para que se hagan una idea, un punto en un mapa 2D tiene dos dimensiones (x, y). En nuestro caso, cada punto tiene 768 "coordenadas". A mayor dimensión, más matices de significado podemos capturar. Es un balance entre la riqueza de información y el costo de procesamiento.
+
+vector_search_metric: cosine
+Por último, este es el método que usamos para medir la similitud. La métrica del coseno se fija en el ángulo entre los vectores. Si el ángulo es pequeño, significa que los vectores apuntan en la misma dirección, por lo que su significado es muy similar. Es el método más común para encontrar contenido semánticamente relacionado, ya que es muy efectivo.
+
+En resumen
+Juntos, estos parámetros le permiten a nuestro sistema buscar más allá de las palabras clave para encontrar el significado real detrás de la intención del usuario. Así podemos ofrecer una experiencia de búsqueda mucho más inteligente y relevante.

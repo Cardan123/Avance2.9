@@ -1,0 +1,36 @@
+[
+  {
+    "$vectorSearch": {
+      "exact": true,
+      "index": "vector_search_multimodal_index",
+      "limit": 2,
+      "path": "embedding",
+      "queryVector": ${queryVector}
+    }
+  },
+  {
+      "$group": {
+          "_id": "$doc_path",
+          "doc_path": {"$first": "$doc_path"},
+          "chunk_text": {"$first": "$chunk_text"},
+          "embedding": {"$first": "$embedding"},
+          "score": {"$first": "$score"}
+      }
+  },
+  {
+    "$project": {
+      "_id": 0,
+      "doc_path": 1,
+      "chunk_text": 1,
+      "score": { 
+        "$meta": "vectorSearchScore" 
+      }
+    }
+  },
+  {
+      "$sort": {"score": -1}
+  },
+  {
+      "$limit": 2
+  }
+]

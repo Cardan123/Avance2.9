@@ -1,0 +1,12 @@
+{
+    "fields": [
+        {
+            "type": "vector",
+            "path": "embedding_text",
+            "numDimensions": 1024,
+            "similarity": "cosine"
+        }
+    ],
+    "name": "vector_search_index",
+    "type": "vectorSearch"
+}

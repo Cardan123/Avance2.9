@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "IngestPipelineMCPServer": {
+      "command": "C:\\Git\\MultimodalRAG\\venv\\Scripts\\python.exe",
+      "args": [
+        "C:\\Git\\MultimodalRAG\\src\\mcpserver\\ingest_pipeline_mcp_server.py"
+      ]
+    }
+    
+  }
+}
